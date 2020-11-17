@@ -15,13 +15,13 @@ function plusOne(digits = []) {
   for (let i = len - 1; i >= 0; i--) {
     digits[i]++;
     digits[i] %=10; // 除10取余
-    if (digits[i] != 0) {
+    if (digits[i] !== 0) {
       // 余数不为0，说明没有进位，计算结束
       return digits;
     }
   }
   // 走到这里说明，是[9, 9, 9]这种情况，将长度+1, 每一项填充0，第一项设置为1
-  digits = [...Array(len + 1)].map((_ => 0))
+  digits = [...Array(len + 1)].map((_ => 0)) // 函数内部的括号保留，在力扣编译更快
   digits[0] = 1;
   return digits;
 }
