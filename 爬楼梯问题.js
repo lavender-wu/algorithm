@@ -18,7 +18,7 @@ function climbStairs(n) {
   var prev = 2; // f(n)最终结果放在这里
   // 最多算到f(n-1), 所以i<n
   for(var i = 2; i < n; i++) {
-    var temp = prevPrev + prev;
+    var temp = prevPrev + prev; // 当i=2 即f(3) = f(1)+f(2) = prevPrev + prev = temp 以此类推
     // 不考虑执行时间问题，可以使用es6结构
     // [prev, prevPrev] = [prevPrev, prev]
     // [prev, temp] = [temp, prev]
