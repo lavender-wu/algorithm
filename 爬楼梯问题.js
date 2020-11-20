@@ -11,13 +11,13 @@
 */
 function climbStairs(n) {
   // 终止条件
-  if(n === 1) {
-    return 1
+  if (n === 1) {
+    return 1;
   }
   var prevPrev = 1;
   var prev = 2; // f(n)最终结果放在这里
   // 最多算到f(n-1), 所以i<n
-  for(var i = 2; i < n; i++) {
+  for (var i = 2; i < n; i++) {
     var temp = prevPrev + prev; // 当i=2 即f(3) = f(1)+f(2) = prevPrev + prev = temp 以此类推
     // 不考虑执行时间问题，可以使用es6结构
     // [prev, prevPrev] = [prevPrev, prev]
@@ -29,5 +29,5 @@ function climbStairs(n) {
 }
 
 const res = climbStairs(5);
-console.log(res)
+console.log(res);
 // 注明：在力扣编译run 定义变量使用var，代码块要用{}包裹， 可以节省时间
