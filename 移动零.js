@@ -9,7 +9,9 @@
  *           b !== 0, 返回0 不操作
  */
 var moveZeroes = function (nums) {
-  nums.sort((a, b) => {
+  return nums.sort((a, b) => {
     return b === 0 ? -1 : 0;
   });
 };
+var arr = [2,0,3,0,0,7,8];
+console.log(moveZeroes(arr));
