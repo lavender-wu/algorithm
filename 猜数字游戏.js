@@ -11,7 +11,7 @@
 var getHint = function (secret, guess) {
   var m = 0;
   var n = 0;
-  var hash = Array(10).fill(0);
+  var hash = Array(10).fill(0); // 数组 值均为0
   for (var i = 0; i < secret.length; i++) {
     if (guess[i] === secret[i]) {
       m++;
@@ -19,10 +19,12 @@ var getHint = function (secret, guess) {
       // 把每个秘密数都存进去, 正数位秘密数字，负数为猜测数
       // 非0则说明前面有存储过数字, 故n++, 且数字出现的数量+(-)
       if (hash[guess[i]]++ < 0) {
+        // 说明这里存的都来自于 secret数组
         n++;
       }
 
       if (hash[secret[i]]-- > 0) {
+        // 说明这里存的都来自于 guess数组
         n++;
       }
     }
