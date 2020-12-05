@@ -1,6 +1,26 @@
 /**
  * 题目：求滑动窗口最大值
  */
+
+// 常规算法
+var maxSlidingWindow = function(nums, k) {
+  if (!nums.length) {
+      return []
+  }
+  if (k <= 1) {
+      return nums;
+  }
+  var res = [];
+  var len = nums.length - k + 1;
+  for(let i = 0; i < len; i++) {
+      var arr = nums.slice(i, i+k);
+      var max = Math.max(...arr);
+      res.push(max);
+  }
+  return res;
+};
+
+// 优化后算法 TODO 理解
 var maxSlidingWindow = function(nums, k) {
   // window存nums的下标、且window[0]是窗口数的最大值
   // res存的结果

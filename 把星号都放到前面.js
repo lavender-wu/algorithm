@@ -3,6 +3,7 @@
  * 思路：可以把字符串转为数组，操作完成再转为字符串
  */
 
+// TODO
 var replaceStar = str => {
   console.log(str, str.length);
   var res = '';
