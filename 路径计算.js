@@ -5,7 +5,7 @@
 
 /** 
  * 思路，每一个点的最小路径为 当前路径 + min(上项路径，左项路径)
- * 即 grid[i][j] += Math.min(grid[i - 1][j], grid[i][j - 1])
+ * 即 DP方程为：grid[i][j] += Math.min(grid[i - 1][j], grid[i][j - 1])
  */
 var minPathSum = function(grid) {
   var row = grid.length; // 行数
@@ -29,3 +29,7 @@ var minPathSum = function(grid) {
 
   return grid[col - 1][row - 1]
 };
+
+/**
+ * 拓展 路径上有障碍 则障碍的路径为0 多加一步判断障碍物的逻辑
+ */ 
