@@ -1,6 +1,6 @@
 /** 常用排序 O(nlogn)
- * 1.快排
- * 2.归并排序
+ * 1.快排：找标杆位置，比标杆小的都放左边，大的都放右边
+ * 2.归并排序：分成两个数组，对数据进行排序，合并两个有序数组
  * 3.堆排序
  **/
 
@@ -10,7 +10,7 @@
  *   一部分比另一部分的所有数据都要小。然后递归调用，在两边都实行快速排序。
  */
 // 不考虑内存问题,可以另外申请内存
-var sortArray = function (nums) {
+var quickSort = function (nums) {
   var len = nums.length;
   if (len < 2) {
     return nums.slice();
@@ -31,15 +31,15 @@ var sortArray = function (nums) {
   return sortArray(left).concat(sortArray(right));
 };
 
-// 考虑内存，只能在原数组操作
-var quickSort = (array, start, end) => {
+// 考虑内存，只能在原数组操作(最优解)
+var quickSortOptimal = (nums) => {
   var sort = (array, begin, end) => {
     if (end <= begin) {
       return array;
     }
     var pivot = partition(array, begin, end);
-    quickSort(array, begin, pivot - 1);
-    quickSort(array, pivot + 1, end);
+    sort(array, begin, pivot - 1);
+    sort(array, pivot + 1, end);
     return array;
   };
 
@@ -69,7 +69,7 @@ var mergeSort = function (nums) {
     if (left >= right) {
       return array;
     }
-    var mid = (left + right) >> 1;
+    var mid = (left + right) >> 1; // 右位移 相当于 除以2 即（left + right）/2
     sort(array, left, mid);
     sort(array, mid + 1, right);
     merge(array, left, mid, right);
