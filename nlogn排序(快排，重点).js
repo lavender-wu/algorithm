@@ -9,7 +9,7 @@
  *   快速排序是对冒泡排序的一种改进，第一趟排序时将数据分成两部分
  *   一部分比另一部分的所有数据都要小。然后递归调用，在两边都实行快速排序。
  */
-// 不考虑内存问题,可以另外申请内存
+// 不考虑内存问题,可以另外申请内存（力扣官网提交会因为内存泄露报错）
 var quickSort = function (nums) {
   var len = nums.length;
   if (len < 2) {
@@ -18,8 +18,8 @@ var quickSort = function (nums) {
   // Math.random() 返回0-1间的浮点数, 乘以长度，向下取整得到pivot下标
   var pivotIndex = Math.floor(Math.random() * len);
   var pivot = nums[pivotIndex];
-  var left = [],
-    right = [];
+  var left = [];
+  var right = [];
   for (var i = 0; i < len; i++) {
     if (nums[i] < pivot) {
       left.push(nums[i]);
@@ -33,6 +33,7 @@ var quickSort = function (nums) {
 
 // 考虑内存，只能在原数组操作(最优解)
 var quickSortOptimal = (nums) => {
+  // 2. 排序，递归排序到最小颗粒 
   var sort = (array, begin, end) => {
     if (end <= begin) {
       return array;
@@ -43,7 +44,7 @@ var quickSortOptimal = (nums) => {
     return array;
   };
 
-  // 找到标杆位置，并将小于标杆的数放到左边，大于标杆的放右边
+  // 1.找到标杆位置，并将小于标杆的数放到左边，大于标杆的放右边
   var partition = (arr, begin, end) => {
     var pivot = end;
     var counter = begin;
@@ -53,6 +54,8 @@ var quickSortOptimal = (nums) => {
         counter++;
       }
     }
+    // 最后把标杆位置与counter对调，此时标杆左边的数均小于它 右边的数均大于它
+    // 递归之后结果也是两个有序数组
     [arr[pivot], arr[counter]] = [arr[counter], arr[pivot]];
     return counter;
   };
@@ -65,18 +68,21 @@ var quickSortOptimal = (nums) => {
 var mergeSort = function (nums) {
   return sort(nums, 0, nums.length - 1);
 
+  // (1)先排序
   function sort(array, left, right) {
     if (left >= right) {
       return array;
     }
+    // 取中点有两中方式均可
     var mid = (left + right) >> 1; // 右位移 相当于 除以2 即（left + right）/2
+    // var mid = Math.floor(left + (right - left) / 2);
     sort(array, left, mid);
     sort(array, mid + 1, right);
     merge(array, left, mid, right);
     return array;
   }
 
-  // 合并两个有序链表
+  // (2)合并两个有序数组
   function merge(arr, left, mid, right) {
     // arr 排序数组
     // left: 当前处理的第一项元素坐标
