@@ -6,30 +6,14 @@
 var subArr = [1, 1, 3, 9];
 var supArr = [1, 1, 2, 5, 9];
 
-// 方法1：基础两边循环
-// var isSubset = function (subArr, supArr) {
-//   const len = supArr.length;
-//   var map = {};
-//   for (let i = 0; i < len; i++) {
-//     if (map[supArr[i]]) {
-//       map[supArr[i]]++;
-//     } else {
-//       map[supArr[i]] = 1;
-//     }
-//   }
 
-//   for (let j = 0; j < subArr.length; j++) {
-//     if (!map[subArr[j]] || map[subArr[j]] === 0) {
-//       return false;
-//     } else if (map[subArr[j]]-- > 0) {
-//     }
-//   }
-//   return true;
-// };
-
-// 方法2： 最优解！注意利用有序这个条件，同一个下标，若是subArr[i] < supArr[i], 说明非自己如下数组
+// 最优解！注意利用有序这个条件，同一个下标，若是subArr[i] < supArr[i], 说明非自己如下数组
 // subArr = [1, 2, 5], supArr = [1, 3, 5]; 2 < 3, 一定是非子集
 var isSubset = (subArr, supArr) => {
+  // 子数组长度大于父数组是 说明非子集
+  if (supArr.length < subArr.length) {
+    return false;
+  }
   var i = 0; // subArr遍历下标
   var j = 0; // supArr遍历下标
   while (i < subArr.length && j < supArr.length) {
