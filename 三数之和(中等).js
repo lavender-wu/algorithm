@@ -1,5 +1,5 @@
 /**
- * 题目：求三数之和
+ * 题目：求三数之和，此题目要求三数之和为0
  */
 
 /**
@@ -73,7 +73,7 @@ var threeSum = (nums) => {
     for (let j = i + 1; j < nums.length - 1; j++) {
       if (hash[nums[j]] != undefined) {
         res.push([nums[j]].concat(hash[nums[j]]));
-        // 每个只能使用一次，使用之和就要清空
+        // 每个只能使用一次，使用之后就要清空
         hash[nums[j]] = undefined;
       } else {
         // 差值作为key 组合作为value存到hash表

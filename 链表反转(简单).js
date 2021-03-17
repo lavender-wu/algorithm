@@ -26,7 +26,7 @@ var reverseList = function (head) {
   const next = head.next; // next节点 反转后是最后一个节点
   const reversedHead = reverseList(next); // 反转除头指针以外的链表的头指针
   next.next = head; // next.next即反转后链表的尾指针，使其指向头指针
-  // head.next = null，使最右边每次翻转的结束，尾指针都指向null
+  // head.next = null使最右边每次翻转的结束，尾指针都指向null
   head.next = null; 
   return reversedHead;  // 返回翻转后的链表（即链表的头指针）
 };
