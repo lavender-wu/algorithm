@@ -4,7 +4,7 @@
  * @return {string} res
  */
 var replaceSpace = function(s) {
-  var reg = /\s/g;
+  var reg = /\s/g; // \s是指空白, 包括空格、换行、tab缩进等所有的空白
   var res = s.replace(reg, '%20');
   return res;
 };
